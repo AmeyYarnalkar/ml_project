@@ -11,7 +11,7 @@ import pandas as pd
 from pathlib import Path
 from dataclasses import dataclass
 from sklearn.model_selection import train_test_split
-from src.components import data_transformation
+from src.components import data_transformation, model_trainer
 
 from src.logger import logging
 from src.exceptions import CustomException
@@ -77,4 +77,9 @@ if __name__ == "__main__":
     
     transform = data_transformation.DataTransformation()
     train_arr, test_arr, _ = transform.transform_data(train_path, test_path)
+    
+    trainer = model_trainer.ModelTrainer()
+    score = trainer.train_model(train_arr, test_arr)
+    
+    print(score)
     
