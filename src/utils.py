@@ -1,11 +1,16 @@
-from exceptions import CustomException
+from src.exceptions import CustomException
 import sys
-from logger import logging
+from src.logger import logging
+import pickle
+from pathlib import Path
 
-try:
-    print(1/0)
+# function to store the object
+def save_model(model, path):
+    try:
+        Path(path).parent.mkdir(parents=True, exist_ok=True)
 
-except Exception as e:
-    error = CustomException(e, sys)
-    logging.error(error)
-    raise error
+        with open(path, "wb") as file:
+            pickle.dump(model, file)
+
+    except Exception as e:
+        raise CustomException(e, sys)
