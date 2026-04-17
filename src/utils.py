@@ -71,3 +71,19 @@ def getBestModelName(report):
             best_model = name
             
     return best_model
+
+# function to load the object
+def load_object(path):
+    try:
+        logging.info(f"Loading object from file: {path}")
+
+        with open(path, "rb") as f:
+            obj = pickle.load(f)
+
+        logging.info("Object loaded successfully")
+
+        return obj
+
+    except Exception as e:
+        logging.error("Error occurred while loading object")
+        raise CustomException(e, sys)

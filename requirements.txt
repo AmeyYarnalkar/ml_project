@@ -7,4 +7,5 @@ catboost
 xgboost
 notebook
 ipykernel
+flask
 -e .
